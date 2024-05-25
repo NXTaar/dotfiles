@@ -3,4 +3,5 @@ zoxide
 brew
 rust
 nvim
-node
+nod
+stow
