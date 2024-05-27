@@ -1,0 +1,13 @@
+---
+- name: Resolve dotfiles repo root
+  ansible.builtin.shell: >
+    cd "$(dirname "${BASH_SOURCE[0]}")" || exit ; pwd -P | sed -r 's/(.+dotfiles).+/\1/g'
+  args:
+    executable: /bin/bash
+  register: ansible_dotfiles_root_folder
+  ignore_errors: true
+
+- name: Show dotfiles repo root
+  ansible.builtin.debug:
+    msg: "Dotfiles Repo: {{ ansible_dotfiles_root_folder.stdout }}"
+

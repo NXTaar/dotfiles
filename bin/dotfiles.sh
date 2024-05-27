@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" || exit ; pwd -P )
 

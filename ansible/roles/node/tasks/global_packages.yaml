@@ -1,0 +1,9 @@
+---
+- name: NODE | Install global packages
+  vars:
+    packages: 
+      - yarn
+      - svgo 
+  ansible.builtin.shell: ". $HOME/.nvm/nvm.sh && npm install -g {{ packages | join(' ') }}"
+  args:
+    executable: /bin/bash

@@ -14,7 +14,7 @@ fi
 export NVM_DIR=~/.nvm
 export EDITOR=nvim
 
-source $(brew --prefix nvm)/nvm.sh
+source "$NVM_DIR/nvm.sh"
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -84,3 +84,7 @@ alias zconf="nvim ~/.zshrc"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

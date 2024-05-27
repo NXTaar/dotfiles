@@ -1,0 +1,4 @@
+---
+- ansible.builtin.import_tasks: install.yaml
+- ansible.builtin.import_tasks: global_packages.yaml
+- ansible.builtin.import_tasks: svgo.yaml

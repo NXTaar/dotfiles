@@ -1,0 +1,11 @@
+---
+- name: ZSH | Link .zshrc
+  ansible.builtin.file:
+    src: "{{ ansible_dotfiles_root_folder.stdout }}/configs/.zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    state: link
+- name: ZSH | Link Powerlevel10k theme file
+  ansible.builtin.file:
+    src: "{{ ansible_dotfiles_root_folder.stdout }}/configs/.p10k.zsh"
+    dest: "{{ ansible_env.HOME }}/.p10k.zsh"
+    state: link
