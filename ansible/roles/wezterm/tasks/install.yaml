@@ -1,0 +1,27 @@
+# 
+---
+- name: WEZTERM | Download Latest Version JSON"
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/wez/wezterm/releases/latest
+  register: wezterm_latest_version_json
+  changed_when: false
+
+- name: WEZTERM | Registering WezTerm Latest Release
+  ansible.builtin.set_fact:
+    wezterm_latest_release: "{{ wezterm_latest_version_json.json.tag_name }}"
+
+- name: WEZTERM | Show wezterm_latest_release
+  ansible.builtin.debug:
+    var: wezterm_latest_release
+
+- name: WEZTERM | Download and unpack WezTerm archive
+  unarchive:
+    src: "https://github.com/wez/wezterm/releases/download/{{ wezterm_latest_release }}/WezTerm-macos-{{ wezterm_latest_release }}.zip"
+    dest: "/tmp"
+    remote_src: true
+
+- name: WEZTERM | Copy WezTerm.app
+  ansible.builtin.copy:
+    src: "/tmp/WezTerm-macos-{{ wezterm_latest_release }}/WezTerm.app"
+    dest: /Applications
+    mode: preserve

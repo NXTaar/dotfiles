@@ -1,6 +1,6 @@
 - name: SVGO | Link config
   ansible.builtin.file:
-    src: "{{ ansible_dotfiles_root_folder.stdout }}/configs/svgo.config.js"
+    src: "{{ ansible_dotfiles_root }}/configs/svgo.config.js"
     dest: "{{ ansible_env.HOME }}/.svgoconfig"
     state: link
 

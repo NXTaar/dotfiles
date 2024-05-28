@@ -1,0 +1,9 @@
+---
+# - ansible.builtin.import_tasks: install.yaml
+
+- name: WEZTERM | Link configuration files
+  ansible.builtin.file:
+    src: "{{ ansible_dotfiles_root }}/wezterm"
+    dest: "{{ ansible_env.HOME }}/.config/wezterm"
+    state: link
+
