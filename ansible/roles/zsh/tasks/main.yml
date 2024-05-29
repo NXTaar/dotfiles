@@ -9,3 +9,7 @@
     src: "{{ ansible_dotfiles_root }}/configs/.p10k.zsh"
     dest: "{{ ansible_env.HOME }}/.p10k.zsh"
     state: link
+- name: ZSH | Ensure config directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config"
+    state: directory

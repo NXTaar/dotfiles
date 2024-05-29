@@ -1,0 +1,15 @@
+{
+    "runtime.version": "LuaJIT",
+    "runtime.path": [
+      "lua/?.lua",
+      "lua/?/init.lua"
+    ],
+    "diagnostics.globals": ["vim","spec",
+        "register_keymap_action",
+        "get_keymap_config_for_action"],
+    "workspace.checkThirdParty": false,
+    "workspace.library": [
+      "$VIMRUNTIME",
+      "./lua"
+    ]
+  }

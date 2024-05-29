@@ -1,5 +1,5 @@
 ---
-# - ansible.builtin.import_tasks: install.yaml
+- ansible.builtin.import_tasks: install.yaml
 
 - name: WEZTERM | Link configuration files
   ansible.builtin.file:
