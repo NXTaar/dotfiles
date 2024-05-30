@@ -1,3 +1,4 @@
+local wezterm = require 'wezterm'
 local M = {}
 
 
@@ -9,9 +10,14 @@ function M.apply_config(config)
         top = 0,
         bottom = '1px',
     }
+    if string.find(wezterm.target_triple, 'windows') then
+        config.window_background_opacity = 0.9
+    else
+        config.window_background_opacity = 0.8
+    end
 
-    config.window_background_opacity = 0.8
     config.macos_window_background_blur = 40
+    config.win32_system_backdrop = 'Acrylic'
     config.window_decorations = 'RESIZE'
     config.window_close_confirmation = 'NeverPrompt'
 end

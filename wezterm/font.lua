@@ -8,7 +8,13 @@ local M = {
 
 function M.apply_config(config)
     config.font = FONT_SOURCE_CODE
-    config.font_size = 14
+
+    if string.find(wezterm.target_triple, 'windows') then
+        config.font_size = 12
+    else
+        config.font_size = 14
+    end
+
     config.line_height = 1.1
 end
 
