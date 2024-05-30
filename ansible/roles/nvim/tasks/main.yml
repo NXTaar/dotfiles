@@ -1,9 +1,11 @@
 ---
-# - ansible.builtin.import_tasks: install.yaml
+- ansible.builtin.import_tasks: ubuntu.yaml
+  when: ansible_host_environment_is_wsl
 
 - name: NVIM | Link configuration files
   ansible.builtin.file:
     src: "{{ ansible_dotfiles_root }}/nvim"
     dest: "{{ ansible_env.HOME }}/.config/nvim"
     state: link
+    force: true
 
