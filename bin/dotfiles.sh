@@ -11,6 +11,6 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 fi
 
 # Linux (Ubuntu)
-if [  -n "$(uname -a | grep Ubuntu)" ]; then
+if [  -n "$(uname -a | grep -E 'Ubuntu|WSL')" ]; then
     source ./ubuntu.sh
 fi
