@@ -1,14 +1,30 @@
 ---
+- name: ZSH | Install on wsl Ubuntu
+  when: ansible_host_environment_is_wsl
+  become: true
+  block:
+    - ansible.builtin.apt:
+        name: zsh
+        state: latest
+    - ansible.builtin.shell: >
+        chsh -s $(which zsh)
+      args:
+        executable: /bin/bash
+
 - name: ZSH | Link .zshrc
   ansible.builtin.file:
-    src: "{{ ansible_dotfiles_root }}/configs/.zshrc"
+    src: "{{ ansible_dotfiles_root }}/zsh/.zshrc"
     dest: "{{ ansible_env.HOME }}/.zshrc"
     state: link
+    force: true
+
 - name: ZSH | Link Powerlevel10k theme file
   ansible.builtin.file:
     src: "{{ ansible_dotfiles_root }}/configs/.p10k.zsh"
     dest: "{{ ansible_env.HOME }}/.p10k.zsh"
     state: link
+    force: true
+
 - name: ZSH | Ensure config directory
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config"
