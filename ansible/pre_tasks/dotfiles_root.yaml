@@ -7,11 +7,17 @@
   register: ansible_dotfiles_root_folder_shell
   ignore_errors: true
 
-- name: "NVM | Registering NVM Latest Version"
+- name: "Setting Dotfiles root variable"
   ansible.builtin.set_fact:
     ansible_dotfiles_root: "{{ ansible_dotfiles_root_folder_shell.stdout | default('') }}"
 
 - name: Show dotfiles repo root
   ansible.builtin.debug:
     msg: "Dotfiles Repo: {{ ansible_dotfiles_root }}"
+
+- name: Create root file for use in configs
+  copy:
+      dest: "{{ ansible_env.HOME }}/.dotfilesrc"
+      content: |
+        export DOTFILES_ROOT_FOLDER={{ ansible_dotfiles_root }}
 
