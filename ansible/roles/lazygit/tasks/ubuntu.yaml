@@ -1,0 +1,25 @@
+- name: LAZYGIT | Install
+  become: true
+  when: ansible_host_environment_is_wsl
+  block:
+    - name: LAZYGIT | Download Latest Version JSON"
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/jesseduffield/lazygit/releases/latest
+      register: lazygit_latest_version_json
+      changed_when: false
+    - name: LAZYGIT | Registering WezTerm Latest Release
+      ansible.builtin.set_fact:
+        lazygit_latest_release: "{{ lazygit_latest_version_json.json.tag_name | regex_replace('^v', '')}}"
+
+    - name: LAZYGIT | Show lazygit_latest_release
+      ansible.builtin.debug:
+        var: lazygit_latest_release
+
+    - name: LAZYGIT | Download and install Lazygit archive
+      ansible.builtin.shell: |
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_latest_release }}_Linux_x86_64.tar.gz"
+        tar xf lazygit.tar.gz lazygit
+        sudo install lazygit /usr/local/bin
+      args:
+        executable: /bin/bash
+        chdir: /tmp
