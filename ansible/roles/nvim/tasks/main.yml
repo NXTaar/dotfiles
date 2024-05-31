@@ -2,6 +2,13 @@
 - ansible.builtin.import_tasks: ubuntu.yaml
   when: ansible_host_environment_is_wsl
 
+- name: NVIM | Install Treesitter cli
+  community.general.cargo:
+    name: tree-sitter-cli
+    state: latest
+  tags:
+    - cargo
+
 - name: NVIM | Link configuration files
   ansible.builtin.file:
     src: "{{ ansible_dotfiles_root }}/nvim"
