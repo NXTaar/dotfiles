@@ -1,16 +1,17 @@
 local json_schemas = require('schemastore').json.schemas()
 
 return {
-    server = 'jsonls',
-    autoformat_files = { 'json' },
-    config = {
+    formatting = {
+        json = { 'prettier' }
+    },
+    jsonls = {
         settings = {
             json = {
                 validate = {
-                    enable = true
+                    enable = true,
                 },
-                schemas = json_schemas
-            }
-        }
-    }
+                schemas = json_schemas,
+            },
+        },
+    },
 }

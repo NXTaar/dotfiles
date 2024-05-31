@@ -1,21 +1,22 @@
 local json_schemas = require('schemastore').json.schemas()
 
 return {
-    server = 'yamlls',
-    autoformat_files = { 'yaml' },
-    config = {
+    formatting = {
+        yaml = { 'prettier' }
+    },
+    yamlls = {
         schemastore = {
-            enable = true
+            enable = true,
         },
         settings = {
             yaml = {
                 hover = true,
                 completion = true,
                 validate = {
-                    enable = true
+                    enable = true,
                 },
-                schemas = json_schemas
-            }
-        }
-    }
+                schemas = json_schemas,
+            },
+        },
+    },
 }

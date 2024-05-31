@@ -1,3 +1,6 @@
 return {
-    server = 'html'
+    formatting = {
+        html = { 'prettier' }
+    },
+    html = {},
 }

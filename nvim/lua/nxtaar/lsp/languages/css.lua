@@ -1,4 +1,7 @@
 return {
-    { server = 'cssls' },
-    { server = 'cssmodules_ls' }
+    formatting = {
+        css = { 'prettier' }
+    },
+    cssls = {},
+    cssmodules_ls = {},
 }

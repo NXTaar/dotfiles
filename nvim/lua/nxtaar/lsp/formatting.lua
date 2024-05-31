@@ -1,17 +1,12 @@
-local languages = require('nxtaar.lsp.lang_list')
+local languages = require("nxtaar.lsp.lang_list")
 
-local servers = {}
-
-for _, lang in ipairs(languages) do
-    if (lang.autoformat_files) then
-        servers[lang.server] = lang.autoformat_files
-    end
-end
+local fos_options = {
+	lsp_fallback = true,
+	async = false,
+	timeout_ms = 500,
+}
 
 return {
-    format_opts = {
-        async = true,
-        timeout_ms = 10000
-    },
-    servers = servers
+	formatters_by_ft = languages.formatting,
+	format_on_save = fos_options,
 }

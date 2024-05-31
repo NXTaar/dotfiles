@@ -24,13 +24,13 @@ return {
 
     -- File navigation
     { l_key = 'f',    action = actions.SEARCH_FILE },
-    { l_key = 'lg',   action = actions.SEARCH_GREP },
+    { l_key = 's',    action = actions.SEARCH_GREP },
     { l_key = '-',    action = 'oil.open' },
 
     -- Projects
     { l_key = 'pr',   action = actions.PROJECTS_LIST },
     { l_key = 'pf',   action = actions.SEARCH_FILE_ALL_PROJECTS },
-    { l_key = 'plg',  action = actions.SEARCH_GREP_ALL_PROJECTS },
+    { l_key = 'ps',   action = actions.SEARCH_GREP_ALL_PROJECTS },
 
     { l_key = 'yarn', cmd = 'vs|:term rm -rf node_modules && yarn' },
 
@@ -40,61 +40,69 @@ return {
         action = 'lsp.show-hint',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         key = 'gd',
         action = 'lsp.go-to-definition',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         key = 'gD',
         action = 'lsp.go-to-declaration',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         key = 'gi',
         action = 'lsp.go-to-implementation',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         key = 'go',
         action = 'lsp.go-to-type-definition',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         key = 'gr',
         action = 'lsp.go-to-references',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         key = 'gs',
         action = 'lsp.signature-help',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         l_key = 'rn',
         action = 'lsp.rename',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
-        key = '<F3>',
+        l_key = 'l',
+        action = 'lsp.format',
+        mode = { 'n', 'v' },
+        silent = false,
+        remap = false,
+        buffer = true,
+    },
+    {
+        l_key = 'L',
         action = 'lsp.format-async',
-        mode = { 'n', 'x' },
+        mode = { 'n', 'v' },
         silent = false,
         remap = false,
         buffer = true,
@@ -104,34 +112,35 @@ return {
         action = 'lsp.code-action',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         l_key = 'i',
         action = 'lsp.show-info',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         key = '[d',
         action = 'lsp.diagnostic-go-to-prev',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     {
         key = ']d',
         action = 'lsp.diagnostic-go-to-next',
         silent = false,
         remap = false,
-        buffer = true
+        buffer = true,
     },
     { l_key = 'li',      action = 'lsp.show-lsp-info' },
 
     -- Typescript
     { l_key = 'ti',      action = 'typescript.add-missing-imports',                buffer = true },
     { l_key = 'tu',      action = 'typescript.remove-unused-imports',              buffer = true },
+    { l_key = 'to',      action = 'typescript.organize-imports',                   buffer = true },
 
     -- Code completion
     { key = '<C-f>',     action = 'completion.scroll-down' },
@@ -171,5 +180,5 @@ return {
     { l_key = 'jt',      action = 'reformat.toggle' },
     { l_key = 'js',      action = 'reformat.split' },
     { l_key = 'jj',      action = 'reformat.join' },
-    { key = '<C-q>',     to = '<C-\\><C-n>',                                       mode = { 't' } }
+    { key = '<C-q>',     to = '<C-\\><C-n>',                                       mode = { 't' } },
 }

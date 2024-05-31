@@ -1,3 +1,4 @@
+local conform = require('conform')
 local action = require('nxtaar.utils.actions').action
 
 return {
@@ -9,12 +10,18 @@ return {
     ['lsp.go-to-references'] = action('trouble.show-references'),
     ['lsp.signature-help'] = vim.lsp.buf.signature_help,
     ['lsp.rename'] = vim.lsp.buf.rename,
+    ['lsp.format'] = function()
+        conform.format({
+            lsp_fallback = true,
+            async = false,
+            timeout_ms = 500,
+        })
+    end,
     ['lsp.format-async'] = function()
         vim.lsp.buf.format({ async = true })
     end,
     ['lsp.code-action'] = vim.lsp.buf.code_action,
     ['lsp.show-info'] = vim.diagnostic.open_float,
     ['lsp.diagnostic-go-to-prev'] = vim.diagnostic.goto_prev,
-    ['lsp.diagnostic-go-to-next'] = vim.diagnostic.goto_next
+    ['lsp.diagnostic-go-to-next'] = vim.diagnostic.goto_next,
 }
-

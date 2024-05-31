@@ -14,7 +14,14 @@ local M = {
         { 'stevearc/dressing.nvim' },
         { 'folke/neodev.nvim' },
         { 'b0o/schemastore.nvim' },
-    }
+        {
+            'stevearc/conform.nvim',
+            event = {
+                'BufReadPre',
+                'BufNewFile',
+            },
+        },
+    },
 }
 
 function M.config()
@@ -26,17 +33,21 @@ function M.config()
     local keymap_actions = require('nxtaar.lsp.keymap_actions')
     local diagnostic = require('nxtaar.lsp.diagnostic')
     local format_opts = require('nxtaar.lsp.formatting')
+    local conform = require('conform')
     local languages = require('nxtaar.lsp.lang_list')
     local neodev = require('neodev')
 
     -- Neovim specific LSP server (hints and docs)
     neodev.setup({})
     ----
+
     dressing.setup({
         input = {
             insert_only = false,
-        }
+        },
     })
+
+    conform.setup(format_opts)
 
     -- Diagnostic
     vim.diagnostic.config({
@@ -46,15 +57,15 @@ function M.config()
     ----
 
     -- Format on save
-    lsp_zero.format_on_save(format_opts)
+    -- lsp_zero.format_on_save(format_opts)
     ----
 
     -- Register language support
-    for _, lang in ipairs(languages) do
-        if lang.server ~= 'tsserver' then
-            lsp_zero.configure(lang.server, lang.config)
+    for server, config in pairs(languages.server_configs) do
+        if server ~= 'tsserver' then
+            lsp_zero.configure(server, config)
         else
-            typescript.setup(lang.config)
+            typescript.setup(config)
         end
     end
     ----
@@ -62,10 +73,10 @@ function M.config()
     -- Language servers installation
     mason.setup({})
     mason_lspconfig.setup({
-        ensure_installed = vim.tbl_map(function(v) return v.server end, languages),
+        ensure_installed = languages.ensure_installed_servers,
         handlers = {
-            lsp_zero.default_setup
-        }
+            lsp_zero.default_setup,
+        },
     })
     ----
 

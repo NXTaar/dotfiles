@@ -1,3 +1,6 @@
 return {
-    server = 'marksman'
+    formatting = {
+        markdown = { 'prettier' },
+    },
+    marksman = {},
 }

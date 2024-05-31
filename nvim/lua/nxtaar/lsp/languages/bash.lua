@@ -1,3 +1,3 @@
 return {
-    server = 'bashls'
+	bashls = {},
 }
