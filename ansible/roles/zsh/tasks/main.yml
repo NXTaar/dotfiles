@@ -29,3 +29,10 @@
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config"
     state: directory
+
+- name: ZSH | Install better cd command (zoxide)
+  community.general.cargo:
+    name: zoxide
+    state: latest
+  tags:
+    - cargo

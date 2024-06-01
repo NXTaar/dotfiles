@@ -4,13 +4,13 @@
   connection: local
 
   pre_tasks:
-  - ansible.builtin.import_tasks: pre_tasks/detect_wsl.yaml
-  - ansible.builtin.import_tasks: pre_tasks/dotfiles_root.yaml
+  - import_tasks: pre_tasks/detect_wsl.yaml
+  - import_tasks: pre_tasks/dotfiles_root.yaml
 
   roles:
+    - rust
     - zsh
     - lazygit
-    - rust
     - nvim
     - wezterm
     - node

@@ -2,9 +2,11 @@
 - ansible.builtin.import_tasks: ubuntu.yaml
   when: ansible_host_environment_is_wsl
 
-- name: NVIM | Install Treesitter cli
+- name: NVIM | Install additional tools
   community.general.cargo:
-    name: tree-sitter-cli
+    name:
+     - tree-sitter-cli
+     - ripgrep
     state: latest
   tags:
     - cargo
