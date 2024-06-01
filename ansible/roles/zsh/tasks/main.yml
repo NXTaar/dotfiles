@@ -36,3 +36,17 @@
     state: latest
   tags:
     - cargo
+
+- name: ZSH | Install fuzzy finder search
+  when: ansible_host_environment_is_wsl
+  block:
+    - git:
+        repo: https://github.com/junegunn/fzf.git
+        dest: "{{ ansible_env.HOME }}/.fzf"
+        depth: 1
+    - shell: ./install --no-update-rc
+      args:
+        executable: /bin/bash
+        chdir: "{{ ansible_env.HOME }}/.fzf"
+  tags:
+    - fzf

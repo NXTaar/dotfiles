@@ -72,7 +72,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 
 # Aliases
-alias ls=ls --color
+alias ls="ls --color -a"
 alias c='clear && printf "\e[3J"'
 alias zconf="nvim ~/.zshrc"
 
@@ -94,6 +94,7 @@ if [  -n "$(uname -a | grep -E 'Ubuntu|WSL')" ]; then
     source ./ubuntu.sh
 fi
 
+cd
+
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
-cd
