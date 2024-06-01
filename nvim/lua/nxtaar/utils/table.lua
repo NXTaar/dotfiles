@@ -22,6 +22,6 @@ function M.tbl_is_array(t)
         if t[i] == nil then return false end
     end
     return true
-  end
+end
 
 return M

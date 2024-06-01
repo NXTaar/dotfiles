@@ -13,3 +13,9 @@
       args:
         executable: /bin/bash
         chdir: /tmp
+    - name: NVIM | Install lldb for debugging
+      apt:
+        name: lldb
+        state: latest
+      tags:
+        - apt
