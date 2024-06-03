@@ -81,20 +81,15 @@ alias zconf="nvim ~/.zshrc"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-
-cd ${DOTFILES_ROOT_FOLDER}/zsh
-
 # MacOS
 if [[ $OSTYPE == 'darwin'* ]]; then
-    source ./macos.sh
+    source ${DOTFILES_ROOT_FOLDER}/zsh/macos.sh
 fi
 
 # Linux (Ubuntu)
 if [  -n "$(uname -a | grep -E 'Ubuntu|WSL')" ]; then
-    source ./ubuntu.sh
+    source ${DOTFILES_ROOT_FOLDER}/zsh/ubuntu.sh
 fi
-
-cd
 
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
