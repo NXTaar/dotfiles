@@ -17,6 +17,8 @@
     dest: "{{ ansible_env.HOME }}/.zshrc"
     state: link
     force: true
+  tags:
+    - link_files
 
 - name: ZSH | Link Powerlevel10k theme file
   ansible.builtin.file:
@@ -24,6 +26,8 @@
     dest: "{{ ansible_env.HOME }}/.p10k.zsh"
     state: link
     force: true
+  tags:
+    - link_files
 
 - name: ZSH | Ensure config directory
   ansible.builtin.file:

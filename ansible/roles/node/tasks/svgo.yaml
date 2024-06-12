@@ -3,4 +3,6 @@
     src: "{{ ansible_dotfiles_root }}/configs/svgo.config.js"
     dest: "{{ ansible_env.HOME }}/.svgoconfig"
     state: link
+  tags:
+    - link_files
 
