@@ -23,7 +23,8 @@ function M.config(_, opts)
             fg = palette.yellow.dim
         },
         LspInlayHint = {
-            fg = palette.yellow.dim
+            fg = '#60728a',
+            italic = true
         },
         LineNrAbove = {
             fg = '#96A4B5',

@@ -5,11 +5,9 @@ return {
     -- LSP configuration
     server = {
         on_attach = function(client, bufnr)
-            vim.lsp.inlay_hints.enable(true)
-            -- you can also put keymaps in here
+            vim.lsp.inlay_hint.enable(true)
         end,
         default_settings = {
-            -- rust-analyzer language server configuration
             ['rust-analyzer'] = {
                 cargo = {
                     allFeatures = true

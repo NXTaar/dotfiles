@@ -48,6 +48,7 @@ function M.config()
     local conform = require('conform')
     local languages = require('nxtaar.lsp.lang_list')
     local neodev = require('neodev')
+    local rust_config = require('nxtaar.lsp.languages.rust')
 
     -- Neovim specific LSP server (hints and docs)
     neodev.setup({})
@@ -68,8 +69,8 @@ function M.config()
     lsp_zero.set_sign_icons(diagnostic.icons)
     ----
 
-    -- Format on save
-    -- lsp_zero.format_on_save(format_opts)
+    -- Rust config
+    vim.g.rustaceanvim = rust_config
     ----
 
     -- Register language support
