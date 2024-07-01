@@ -9,7 +9,7 @@
   tags: 
     - kitty
 - vars:
-      theme: FrontEndDelight
+      theme: Nord
   block:
   - name: KITTY | Download theme file
     ansible.builtin.shell: |
