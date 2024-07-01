@@ -1,0 +1,11 @@
+---
+- name: LAZYGIT | Link config
+  ansible.builtin.file:
+    src: "{{ ansible_dotfiles_root }}/configs/lazygit.yaml"
+    dest: "{{ ansible_env.HOME }}/Library/Application\ Support/lazygit/config.yml"
+    state: link
+    force: true
+  tags: 
+    - lazygit
+    - lazygit_link_config
+  

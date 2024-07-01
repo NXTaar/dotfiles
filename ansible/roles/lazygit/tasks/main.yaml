@@ -1,3 +1,5 @@
 ---
 - ansible.builtin.import_tasks: ubuntu.yaml
   when: ansible_host_environment_is_wsl
+- ansible.builtin.import_tasks: macos.yaml
+  when: ansible_host_environment_is_wsl == false
