@@ -8,12 +8,20 @@ function M.config()
 
     trouble.setup()
 
-    register_keymap_action('problems.show-in-file', 'TroubleToggle document_diagnostics', 'cmd')
-    register_keymap_action('problems.show-in-workspace', 'TroubleToggle workspace_diagnostics', 'cmd')
-    register_keymap_action('problems.toggle', 'TroubleToggle', 'cmd')
+    register_keymap_action('problems.show-in-file', function()
+        trouble.toggle('document_diagnostics')
+    end)
+
+    register_keymap_action('problems.show-in-workspace', function()
+        trouble.toggle('workspace_diagnostics')
+    end)
+
+    register_keymap_action('problems.toggle', function()
+        trouble.toggle()
+    end)
 
     register_action('trouble.show-references', function()
-        vim.cmd('TroubleToggle lsp_references')
+        trouble.toggle('lsp_references')
     end)
 end
 
