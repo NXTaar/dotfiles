@@ -11,6 +11,8 @@ local CONFGIG_PATH = vim.fn.stdpath('config')
 local rules_root = CONFGIG_PATH .. '/lua/nxtaar/editor/notifications/rules/'
 
 function M.config()
+    local noice = require('noice')
+
     local opts = {
         presets = {
             command_palette = true,       -- position the cmdline and popupmenu together
@@ -27,15 +29,12 @@ function M.config()
         },
         routes = {}
     }
-    local noice = require('noice')
 
     for file in vim.fs.dir(rules_root) do
         local rule = dofile(rules_root .. file)
 
         table.insert(opts.routes, rule)
     end
-
-    vim.print(opts.routes)
 
     noice.setup(opts)
 end

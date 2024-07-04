@@ -5,7 +5,7 @@ require('nxtaar.keymapper')
 
 spec('nxtaar.lsp.setup')
 
-spec('nxtaar.editor.code_completion')
+spec('nxtaar.editor.code_completion.setup')
 spec('nxtaar.editor.treesitter')
 spec('nxtaar.editor.colorscheme')
 spec('nxtaar.editor.bottom_line')
