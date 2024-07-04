@@ -39,6 +39,10 @@ function M.config()
         mapping = cmp.mapping.preset.insert(keymaps),
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
+            {
+                name = 'lazydev',
+                group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+            },
             { name = 'luasnip' },
             { name = 'buffer' },
             { name = 'path' },

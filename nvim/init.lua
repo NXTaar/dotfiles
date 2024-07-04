@@ -12,7 +12,6 @@ spec('nxtaar.editor.bottom_line')
 spec('nxtaar.editor.navigation')
 spec('nxtaar.editor.undo')
 spec('nxtaar.editor.start_screen')
-spec('nxtaar.editor.markdown-preview')
 spec('nxtaar.editor.notifications')
 
 spec('nxtaar.tools.git')

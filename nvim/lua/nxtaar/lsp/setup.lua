@@ -12,8 +12,19 @@ local M = {
         { 'neovim/nvim-lspconfig' },
         { 'jose-elias-alvarez/typescript.nvim' },
         { 'stevearc/dressing.nvim' },
-        { 'folke/neodev.nvim' },
         { 'b0o/schemastore.nvim' },
+        {
+            'folke/lazydev.nvim',
+            ft = 'lua', -- only load on lua files
+            opts = {
+                library = {
+                    -- See the configuration section for more details
+                    -- Load luvit types when the `vim.uv` word is found
+                    { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+                },
+            },
+        },
+        { 'Bilal2453/luvit-meta', lazy = true },
         {
             'stevearc/conform.nvim',
             event = {
@@ -47,12 +58,7 @@ function M.config()
     local format_opts = require('nxtaar.lsp.formatting')
     local conform = require('conform')
     local languages = require('nxtaar.lsp.lang_list')
-    local neodev = require('neodev')
     local rust_config = require('nxtaar.lsp.languages.rust')
-
-    -- Neovim specific LSP server (hints and docs)
-    neodev.setup({})
-    ----
 
     dressing.setup({
         input = {
