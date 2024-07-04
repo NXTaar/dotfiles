@@ -78,4 +78,4 @@ opt.inccommand = 'split'
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 -- UI language
--- cmd('language en_US')
+cmd('language en_US')

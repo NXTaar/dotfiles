@@ -108,6 +108,9 @@ local M = {
         config = cmp_config,
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-cmdline' },
+            { 'hrsh7th/cmp-path' },
             { 'onsails/lspkind.nvim' }
         }
     }
