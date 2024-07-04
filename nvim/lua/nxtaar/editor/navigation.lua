@@ -1,11 +1,20 @@
-local function harpoon()
-    local harpoon_ui = require('harpoon.ui')
-    local harpoon_mark = require('harpoon.mark')
+local function harpoon_config()
+    local harpoon = require('harpoon')
 
-    register_keymap_action('navigation.go-to-previous', harpoon_ui.nav_prev)
-    register_keymap_action('navigation.go-to-next', harpoon_ui.nav_next)
-    register_keymap_action('navigation.mark-file', harpoon_mark.add_file)
-    register_keymap_action('navigation.toggle-menu', harpoon_ui.toggle_quick_menu)
+    harpoon:setup()
+
+    register_keymap_action('navigation.go-to-previous', function()
+        harpoon:list():prev()
+    end)
+    register_keymap_action('navigation.go-to-next', function()
+        harpoon:list():next()
+    end)
+    register_keymap_action('navigation.mark-file', function()
+        harpoon:list():add()
+    end)
+    register_keymap_action('navigation.toggle-menu', function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+    end)
 end
 
 local function hop_config()
@@ -28,11 +37,11 @@ local function hop_config()
         hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
     end)
 
-    register_keymap_action('navigation.hop-2chars', 'HopChar2', 'cmd')
-    register_keymap_action('navigation.hop-line', 'HopLine', 'cmd')
-    register_keymap_action('navigation.hop-vertical', 'HopVertical', 'cmd')
-    register_keymap_action('navigation.hop-word', 'HopWord', 'cmd')
-    register_keymap_action('navigation.hop-pattern', 'HopPattern', 'cmd')
+    register_keymap_action('navigation.hop-2chars', 'HopChar2')
+    register_keymap_action('navigation.hop-line', 'HopLine')
+    register_keymap_action('navigation.hop-vertical', 'HopVertical')
+    register_keymap_action('navigation.hop-word', 'HopWord')
+    register_keymap_action('navigation.hop-pattern', 'HopPattern')
 end
 
 local M = {
@@ -43,7 +52,12 @@ local M = {
             'nvim-lua/plenary.nvim'
         }
     },
-    { 'ThePrimeagen/harpoon', config = harpoon }
+    {
+        'ThePrimeagen/harpoon',
+        branch = 'harpoon2',
+        config = harpoon_config,
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    }
 }
 
 return M
