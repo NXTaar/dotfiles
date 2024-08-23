@@ -5,16 +5,17 @@
 - name: NVIM | Install additional tools
   community.general.cargo:
     name:
-     - tree-sitter-cli
-     - ripgrep
+      - tree-sitter-cli
+      - ripgrep
     state: latest
   tags:
     - cargo
 
 - name: NVIM | Link configuration files
+  tags:
+    - nvim_link
   ansible.builtin.file:
     src: "{{ ansible_dotfiles_root }}/nvim"
     dest: "{{ ansible_env.HOME }}/.config/nvim"
     state: link
     force: true
-
