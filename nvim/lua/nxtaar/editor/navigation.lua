@@ -57,6 +57,9 @@ local M = {
         branch = 'harpoon2',
         config = harpoon_config,
         dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    {
+        'letieu/harpoon-lualine'
     }
 }
 
