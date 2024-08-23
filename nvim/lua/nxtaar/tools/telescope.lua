@@ -17,10 +17,10 @@ function M.config()
     local themes = require('telescope.themes')
     local register_action = require('nxtaar.utils.actions').register_action
     local get_all_projects = require('nxtaar.tools.project').get_all_projects
-    local pretty_buffers = require('nxtaar.tools.telescope_pretty_buffers')
 
     telescope.setup({})
     telescope.load_extension('fzf')
+    telescope.load_extension('pretty_buffers')
 
     register_action('telescope.show-references', function()
         builtin.lsp_references(themes.get_ivy({ initial_mode = 'normal' }))
@@ -35,8 +35,6 @@ function M.config()
             builtin.find_files()
         end
     end)
-
-    register_keymap_action(actions.BUFFERS_OPEN_LIST, pretty_buffers)
 
     register_keymap_action(actions.SEARCH_FILE_ALL_PROJECTS, function()
         builtin.find_files({ search_dirs = get_all_projects() })
