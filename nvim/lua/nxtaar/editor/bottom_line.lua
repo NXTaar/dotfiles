@@ -5,10 +5,10 @@ return {
             'nvim-tree/nvim-web-devicons'
         },
         opts = {
-            options = {
-                theme = 'nordic',
+            extensions = { 'oil', 'lazy', 'mason' },
+            sections = {
+                lualine_c = { 'harpoon2' },
             },
-            extensions = { 'oil', 'lazy', 'mason' }
         }
     }
 }
