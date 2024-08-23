@@ -5,7 +5,7 @@ local M = {
         {
             'williamboman/mason.nvim',
             build = function()
-                pcall(vim.cmd, 'MasonUpdate')
+                vim.cmd('MasonUpdate')
             end,
         },
         { 'williamboman/mason-lspconfig.nvim' },
