@@ -1,8 +1,9 @@
 local actions = require('nxtaar.utils.action-names')
+local get_selection = require('nxtaar.utils.visual_selection').get_visual_selection
 
 local M = {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    tag = '0.1.8',
     dependencies = {
         'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
@@ -18,7 +19,7 @@ function M.config()
     local get_all_projects = require('nxtaar.tools.project').get_all_projects
     local pretty_buffers = require('nxtaar.tools.telescope_pretty_buffers')
 
-    telescope.setup()
+    telescope.setup({})
     telescope.load_extension('fzf')
 
     register_action('telescope.show-references', function()
@@ -46,7 +47,8 @@ function M.config()
     end)
 
     register_keymap_action(actions.SEARCH_GREP, function()
-        builtin.live_grep()
+        local selection = get_selection()[1] -- TODO: сделать поддержку многострочных selection
+        builtin.live_grep({ default_text = selection })
     end)
 end
 
