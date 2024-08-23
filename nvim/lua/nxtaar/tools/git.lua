@@ -8,26 +8,33 @@ local function fugitive()
         cmd(GSTATUS_HEIGHT .. 'wincmd_')
     end)
 
-    register_keymap_action('git.blame', 'Git blame', 'cmd')
+    register_keymap_action('git.blame', 'Git blame')
 end
 
 local function flog()
-    register_keymap_action('git.open-flog-tree', 'Flog -all', 'cmd')
+    register_keymap_action('git.open-flog-tree', 'Flog -all')
 end
 
 local function lazygit()
-    register_keymap_action('git.open-lazygit', 'LazyGit', 'cmd')
+    register_keymap_action('git.open-lazygit', 'LazyGit')
 end
 
 local function diffview(_plugin, opts)
     local dv = require('diffview')
     dv.setup(opts)
 
-    register_keymap_action('git.open-diff-view', 'DiffviewOpen', 'cmd')
-    register_keymap_action('git.close-diff-view', 'DiffviewClose', 'cmd')
+    register_keymap_action('git.open-diff-view', 'DiffviewOpen')
+    register_keymap_action('git.close-diff-view', 'DiffviewClose')
 end
 
 local M = {
+    {
+        'NeogitOrg/neogit',
+        dependencies = {
+            'nvim-lua/plenary.nvim', -- required
+        },
+        config = true
+    },
     { 'tpope/vim-fugitive', config = fugitive },
     { 'rbong/vim-flog',     config = flog },
     {
