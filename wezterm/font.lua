@@ -12,7 +12,7 @@ function M.apply_config(config)
     if string.find(wezterm.target_triple, 'windows') then
         config.font_size = 12
     else
-        config.font_size = 14
+        config.font_size = 16
     end
 
     config.line_height = 1.1
