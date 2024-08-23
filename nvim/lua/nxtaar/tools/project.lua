@@ -5,7 +5,9 @@ local M = {
     opts = {
         projects = { -- define project roots
             '~/Projects/tochka/*',
-            '~/Projects/other/dotfiles'
+            '~/Projects/other/dotfiles',
+            '~/Projects/other/sgt-telegram',
+            '~/Projects/other/telescope*'
         },
         last_session_on_startup = false
     },
@@ -15,7 +17,6 @@ local M = {
     end,
     dependencies = {
         { 'nvim-lua/plenary.nvim' },
-        { 'nvim-telescope/telescope.nvim', tag = '0.1.4' },
         { 'Shatur/neovim-session-manager' },
     },
     lazy = false,
@@ -30,7 +31,7 @@ function M.config(_, opts)
     local pr = require('neovim-project')
     pr.setup(opts)
 
-    register_keymap_action(actions.PROJECTS_LIST, 'Telescope neovim-project discover', 'cmd')
+    register_keymap_action(actions.PROJECTS_LIST, 'Telescope neovim-project discover')
 end
 
 return M
