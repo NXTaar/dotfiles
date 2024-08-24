@@ -6,5 +6,5 @@
 
     work.email = "sagatovskii@tochka.com";
     work.username = "sagatovskii";
-    work.hostname = "tochka-macbook-m1";
+    work.hostname = "tochka-vsgt-macbook-m1";
 }
