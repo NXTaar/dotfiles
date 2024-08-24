@@ -1,0 +1,5 @@
+{ lib, ...}: {
+    imports = [
+        ./nvim.nix
+    ];
+}
