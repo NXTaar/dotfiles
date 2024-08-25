@@ -1,7 +1,30 @@
 local ts = require('typescript')
-local tbl_find = require('nxtaar.utils.table').tbl_find
 
-local formatters = { { 'biome', 'prettier' } }
+local formatters = { 'eslint' }
+
+local eslint_registry = {
+    ['./.eslintrc.prettier.json'] = {
+        'tochka/reports',
+        'tochka/tar%-core',
+        'tochka/documents%-signer',
+        'tochka/qes%-settings',
+        'tochka/tar%-demand',
+        'tochka/tax%-patents',
+    },
+    ['./.eslintrc.custom.json'] = {
+        'tochka/tar%-kit',
+    }
+}
+
+local function resolve_custom_config(path)
+    for override, patterns in pairs(eslint_registry) do
+        for _, pattern in ipairs(patterns) do
+            if string.find(path, pattern) then
+                return override
+            end
+        end
+    end
+end
 
 return {
     formatting = {
@@ -27,32 +50,16 @@ return {
     },
     biome = {},
     eslint = {
-        on_attach = function(client, bufnr)
-            local path = vim.api.nvim_buf_get_name(bufnr)
-
-            local use_custom_config = tbl_find({
-                'tochka/reports',
-                'tochka/t15%-api',
-                'tochka/tar%-core',
-                'tochka/documents%-signer',
-                'tochka/qes%-settings',
-                'tochka/tar%-demand',
-                'tochka/tax%-patents',
-                'tochka/tax%-auto%-reports',
-            }, function(pattern)
-                return string.find(path, pattern)
-            end)
-
-            if use_custom_config then
-                client.config.settings.options = {
-                    overrideConfigFile = './.eslintrc.prettier.json',
-                }
-            end
-
-            vim.api.nvim_create_autocmd('BufWritePre', {
-                buffer = bufnr,
-                command = 'EslintFixAll',
-            })
-        end,
+        -- on_attach = function(client, bufnr)
+        --     local path = vim.api.nvim_buf_get_name(bufnr)
+        --
+        --     local custom_config_override = resolve_custom_config(path)
+        --
+        --     if custom_config_override then
+        --         client.config.settings.options = {
+        --             overrideConfigFile = custom_config_override
+        --         }
+        --     end
+        -- end,
     },
 }
