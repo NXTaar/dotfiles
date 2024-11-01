@@ -1,5 +1,0 @@
-{ lib, ...}: {
-    imports = [
-        ./hosts.nix
-    ];
-}

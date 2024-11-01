@@ -1,5 +1,0 @@
-{ lib, ...}: {
-    imports = [
-        ./macos.nix
-    ];
-}
