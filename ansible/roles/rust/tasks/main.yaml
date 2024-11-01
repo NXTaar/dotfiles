@@ -4,23 +4,26 @@
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   args:
     executable: /bin/bash
+  tags:
+    - rust
+    - rust_install
 
 - name: Rust | Install Tauri prerequisites
   become: true
   when: ansible_host_environment_is_wsl
   apt:
     pkg:
-     - pkg-config
-     - libwebkit2gtk-4.0-dev
-     - build-essential
-     - curl
-     - wget
-     - file
-     - libssl-dev
-     - libgtk-3-dev
-     - libayatana-appindicator3-dev
-     - librsvg2-dev
-     - libwebkit2gtk-4.0-dev
+      - pkg-config
+      - libwebkit2gtk-4.0-dev
+      - build-essential
+      - curl
+      - wget
+      - file
+      - libssl-dev
+      - libgtk-3-dev
+      - libayatana-appindicator3-dev
+      - librsvg2-dev
+      - libwebkit2gtk-4.0-dev
     state: latest
   tags:
-    - rust
+    - tauri_deps
