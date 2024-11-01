@@ -1,32 +1,32 @@
 ---
-
 - name: KITTY | Link configuration files
   ansible.builtin.file:
     src: "{{ ansible_dotfiles_root }}/kitty"
     dest: "{{ ansible_env.HOME }}/.config/kitty"
     state: link
     force: true
-  tags: 
+  tags:
     - kitty
+    - kitty_link_config
 - vars:
-      theme: Nord
+    theme: Nord
   block:
-  - name: KITTY | Download theme file
-    ansible.builtin.shell: |
-      wget https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/{{ theme }}.conf -P ~/.config/kitty/themes
-    args:
-      executable: /bin/bash
-    tags: 
-      - kitty
-      - kitty_theme
-      - kitty_install_theme
-  - name: KITTY | Link theme file
-    ansible.builtin.file:
-      src: "{{ ansible_dotfiles_root }}/kitty/themes/{{ theme }}.conf"
-      dest: "{{ ansible_env.HOME }}/.config/kitty/theme.conf"
-      state: link
-      force: true
-    tags: 
-      - kitty
-      - kitty_theme
-      - kitty_link_theme
+    - name: KITTY | Download theme file
+      ansible.builtin.shell: |
+        wget https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/{{ theme }}.conf -P ~/.config/kitty/themes
+      args:
+        executable: /bin/bash
+      tags:
+        - kitty
+        - kitty_theme
+        - kitty_install_theme
+    - name: KITTY | Link theme file
+      ansible.builtin.file:
+        src: "{{ ansible_dotfiles_root }}/kitty/themes/{{ theme }}.conf"
+        dest: "{{ ansible_env.HOME }}/.config/kitty/theme.conf"
+        state: link
+        force: true
+      tags:
+        - kitty
+        - kitty_theme
+        - kitty_link_theme
