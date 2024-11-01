@@ -3,6 +3,3 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   # All Homebrew installed apps available at PATH
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-
-# fuzzy file finder
-eval "$(fzf --zsh)"
