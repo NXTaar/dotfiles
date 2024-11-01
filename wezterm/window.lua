@@ -1,14 +1,14 @@
 local wezterm = require 'wezterm'
 local M = {}
 
-
 function M.apply_config(config)
     config.native_macos_fullscreen_mode = true
 
     config.window_padding = {
-        left = '1cell',
+        left = 0,
         top = 0,
-        bottom = '1px',
+        right = 0,
+        bottom = 0,
     }
     if string.find(wezterm.target_triple, 'windows') then
         config.window_background_opacity = 0.9
