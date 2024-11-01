@@ -1,7 +1,7 @@
 ---
 - name: KITTY | Link configuration files
   ansible.builtin.file:
-    src: "{{ ansible_dotfiles_root }}/kitty"
+    src: "{{ ansible_dotfiles_root }}/terminal/kitty"
     dest: "{{ ansible_env.HOME }}/.config/kitty"
     state: link
     force: true

@@ -3,7 +3,7 @@
 
 - name: WEZTERM | Link configuration files
   ansible.builtin.file:
-    src: "{{ ansible_dotfiles_root }}/wezterm"
+    src: "{{ ansible_dotfiles_root }}/terminal/wezterm"
     dest: "{{ ansible_env.HOME }}/.config/wezterm"
     state: link
 
