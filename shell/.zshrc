@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 source ${HOME}/.dotfilesrc
 
 export NVM_DIR=~/.nvm
@@ -23,9 +16,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -42,9 +32,6 @@ zinit snippet OMZP::command-not-found
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
 bindkey '^[[A' history-search-backward
@@ -83,14 +70,18 @@ export NVM_DIR="$HOME/.nvm"
 
 # MacOS
 if [[ $OSTYPE == 'darwin'* ]]; then
-    source ${DOTFILES_ROOT_FOLDER}/zsh/macos.sh
+    source ${DOTFILES_ROOT_FOLDER}/shell/macos.sh
 fi
 
 # Linux (Ubuntu)
 if [  -n "$(uname -a | grep -E 'Ubuntu|WSL')" ]; then
-    source ${DOTFILES_ROOT_FOLDER}/zsh/ubuntu.sh
+    source ${DOTFILES_ROOT_FOLDER}/shell/ubuntu.sh
 fi
 
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
 source <(fzf --zsh)
+
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config ${DOTFILES_ROOT_FOLDER}/configs/oh-my-posh.toml)"
+fi
