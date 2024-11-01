@@ -1,4 +1,4 @@
-local ts = require('typescript')
+-- local ts = require('typescript')
 
 local formatters = { 'eslint' }
 
@@ -33,21 +33,22 @@ return {
         typescriptreact = formatters,
         typescript = formatters,
     },
-    tsserver = {
-        server = {
-            on_attach = function()
-                register_keymap_action('typescript.add-missing-imports', function()
-                    ts.actions.addMissingImports()
-                end)
-                register_keymap_action('typescript.remove-unused-imports', function()
-                    ts.actions.removeUnused()
-                end)
-                register_keymap_action('typescript.organize-imports', function()
-                    ts.actions.organizeImports()
-                end)
-            end,
-        },
-    },
+    -- tsserver = {
+    --     server = {
+    --         on_attach = function()
+    --             register_keymap_action('typescript.add-missing-imports', function()
+    --                 ts.actions.addMissingImports()
+    --             end)
+    --             register_keymap_action('typescript.remove-unused-imports', function()
+    --                 ts.actions.removeUnused()
+    --             end)
+    --             register_keymap_action('typescript.organize-imports', function()
+    --                 ts.actions.organizeImports()
+    --             end)
+    --         end,
+    --     },
+    -- },
+    vtsls = {},
     biome = {},
     eslint = {
         -- on_attach = function(client, bufnr)
