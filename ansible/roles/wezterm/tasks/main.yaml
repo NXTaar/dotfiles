@@ -6,4 +6,5 @@
     src: "{{ ansible_dotfiles_root }}/terminal/wezterm"
     dest: "{{ ansible_env.HOME }}/.config/wezterm"
     state: link
-
+  tags:
+    - wezterm_link_config
