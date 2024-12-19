@@ -6,9 +6,6 @@ return {
         },
         opts = {
             extensions = { 'oil', 'lazy', 'mason' },
-            sections = {
-                lualine_c = { 'harpoon2' },
-            },
         }
     }
 }

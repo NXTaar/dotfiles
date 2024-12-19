@@ -10,7 +10,6 @@ local M = {
         },
         { 'williamboman/mason-lspconfig.nvim' },
         { 'neovim/nvim-lspconfig' },
-        { 'jose-elias-alvarez/typescript.nvim' },
         { 'stevearc/dressing.nvim' },
         { 'b0o/schemastore.nvim' },
         {
@@ -51,7 +50,6 @@ function M.config()
     local lsp_zero = require('lsp-zero')
     local mason = require('mason')
     local dressing = require('dressing')
-    local typescript = require('typescript')
     local mason_lspconfig = require('mason-lspconfig')
     local keymap_actions = require('nxtaar.lsp.keymap_actions')
     local diagnostic = require('nxtaar.lsp.diagnostic')
@@ -81,11 +79,7 @@ function M.config()
 
     -- Register language support
     for server, config in pairs(languages.server_configs) do
-        if server ~= 'tsserver' then
-            lsp_zero.configure(server, config)
-        else
-            typescript.setup(config)
-        end
+        lsp_zero.configure(server, config)
     end
     ----
 
