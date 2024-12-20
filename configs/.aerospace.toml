@@ -54,11 +54,11 @@ on-focus-changed = 'move-mouse window-lazy-center'
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 0
-inner.vertical =   0
-outer.left =       0
-outer.bottom =     0
-outer.top =        0
-outer.right =      0
+inner.vertical = 0
+outer.left = 0
+outer.bottom = 0
+outer.top = 0
+outer.right = 0
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -144,7 +144,10 @@ alt-enter = 'mode apps'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+    'layout floating tiling',
+    'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
@@ -155,6 +158,10 @@ alt-shift-l = ['join-with right', 'mode main']
 [mode.apps.binding]
 alt-t = ['exec-and-forget open -a /Applications/kitty.app', 'mode main']
 alt-b = ['exec-and-forget open -a /Applications/Arc.app', 'mode main']
+alt-c = [
+    'exec-and-forget open -a /Applications/Visual\ Studio\ Code.app',
+    'mode main',
+]
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
