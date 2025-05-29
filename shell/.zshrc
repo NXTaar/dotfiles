@@ -1,9 +1,7 @@
 source ${HOME}/.dotfilesrc
 
-export NVM_DIR=~/.nvm
 export EDITOR=nvim
 
-source "$NVM_DIR/nvm.sh"
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -63,11 +61,6 @@ alias ls="ls --color -a"
 alias c='clear && printf "\e[3J"'
 alias zconf="nvim ~/.zshrc"
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # MacOS
 if [[ $OSTYPE == 'darwin'* ]]; then
     source ${DOTFILES_ROOT_FOLDER}/shell/macos.sh
@@ -80,8 +73,16 @@ fi
 
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(fnm env --use-on-cd --shell zsh)"
 source <(fzf --zsh)
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ${DOTFILES_ROOT_FOLDER}/configs/oh-my-posh.toml)"
+fi
+
+# fnm
+FNM_PATH="/Users/sagatovskii/Library/Application Support/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/Users/sagatovskii/Library/Application Support/fnm:$PATH"
+  eval "`fnm env`"
 fi
