@@ -1,9 +1,10 @@
 local consts = {
     palette = require('nxtaar.editor.statusline.constants.palette'),
-    mode = require('nxtaar.editor.statusline.constants.mode'),
+    mode = require('nxtaar.editor.statusline.constants.mode')
 }
 local mode = require('nxtaar.editor.statusline.components.mode')
 local git_branch = require('nxtaar.editor.statusline.components.git_branch')
+local filename = require('nxtaar.editor.statusline.components.filename')
 local theme_utils = require('nxtaar.editor.statusline.utils.theme')
 local theme = theme_utils.extract_theme(consts.palette.palette_extract_info)
 
@@ -16,15 +17,17 @@ return {
             local color = mode_colors[current_mode]
 
             if color == nil then
-                local mode_palette =
-                    self.consts.mode.modes[current_mode].palette
+                local mode_palette = self.consts.mode.modes[current_mode].palette
                 color = theme_utils.build_color(theme[mode_palette], theme.text)
                 mode_colors[current_mode] = color
             end
 
             return color
-        end,
+        end
     },
     mode,
     git_branch,
+    { provider = "%=" }, -- This creates flexible space that pushes content to center/right
+    filename,
+    { provider = "%=" }, -- This balances the space, centering the filename
 }

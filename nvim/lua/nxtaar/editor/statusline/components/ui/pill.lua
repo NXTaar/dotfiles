@@ -13,36 +13,45 @@ return function(props)
     return {
         init = function(self)
             self.content = render(props.content, self)
-            self.icon = render(props.icon, self)
-            self.icon_color = render(props.icon_color, self)
+            self.pill_icon = render(props.icon, self)
+            self.pill_icon_color = render(props.icon_color, self)
             self.pill_color = render(props.pill_color, self)
             self.content_hl = resolve_hl(props.content_hl, self)
         end,
         {
             provider = '',
             hl = function(self)
-                return { fg = self.pill_color }
-            end,
+                return {
+                    fg = self.pill_color
+                }
+            end
         },
         {
             provider = function(self)
-                return self.icon
+                return self.pill_icon
             end,
             hl = function(self)
                 return {
-                    fg = self.icon_color,
-                    bg = self.pill_color,
+                    fg = self.pill_icon_color,
+                    bg = self.pill_color
                 }
-            end,
+            end
         },
-        {
+        props.single_pill and {
+            provider = ' ',
+            hl = function(self)
+                return {
+                    bg = self.content_hl.bg
+                }
+            end
+        } or {
             provider = ' ',
             hl = function(self)
                 return {
                     fg = self.pill_color,
-                    bg = self.content_hl.bg,
+                    bg = self.content_hl.bg
                 }
-            end,
+            end
         },
         {
             provider = function(self)
@@ -50,15 +59,15 @@ return function(props)
             end,
             hl = function(self)
                 return self.content_hl
-            end,
+            end
         },
         {
             provider = ' ',
             hl = function(self)
                 return {
-                    fg = self.content_hl.bg,
+                    fg = self.content_hl.bg
                 }
-            end,
-        },
+            end
+        }
     }
 end
