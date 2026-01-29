@@ -4,9 +4,28 @@ local function render(factory, ctx)
     return type(factory) == 'function' and factory(ctx) or factory or ''
 end
 
-local function resolve_hl(hl_factory, ctx)
-    local hl = render(hl_factory, ctx)
-    return type(hl) == 'string' and heirline_utils.get_highlight(hl) or hl
+local function resolve_hl(hl, ctx)
+    local hl_type = type(hl)
+
+    if hl_type == 'string' then
+        local hl_group = heirline_utils.get_highlight(hl)
+
+        if not hl_group then
+            vim.notify("statusline: no hightligt group resolved for input: ".. hl)
+        end
+
+        return hl_group
+    end
+
+    if hl_type == 'table' then
+        return hl
+    end
+
+     if hl_type == 'function' then
+        return resolve_hl(hl(ctx))
+    end
+
+    return nil
 end
 
 return function(props)
