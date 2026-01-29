@@ -15,6 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local specs = {
+    "nxtaar.system.libs",
     "nxtaar.plugins",
     "nxtaar.editor"
 }
