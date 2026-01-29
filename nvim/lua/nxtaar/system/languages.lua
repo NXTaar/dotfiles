@@ -9,7 +9,8 @@ M.servers = {}
 M.ensure_installed = {}
 
 for file in vim.fs.dir(lang_root) do
-    local lang = dofile(lang_root .. file)
+    local module = vim.fn.fnamemodify(file, ':r')
+    local lang = require('nxtaar.languages.' .. module)
 
     for field, item in pairs(lang) do
         local field_type = type(field)
