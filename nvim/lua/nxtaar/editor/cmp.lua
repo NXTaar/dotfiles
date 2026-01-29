@@ -7,14 +7,14 @@ return {
         -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
         -- See the full "keymap" documentation for information on defining your own keymap.
         keymap = {
-            preset = 'default'
+            preset = 'default',
         },
         completion = {
             accept = {
                 auto_brackets = {
-                    enabled = true
-                }
-            }
+                    enabled = true,
+                },
+            },
         },
         appearance = {
             -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -23,22 +23,38 @@ return {
             use_nvim_cmp_as_default = true,
             -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
             -- Adjusts spacing to ensure icons are aligned
-            nerd_font_variant = 'mono'
+            nerd_font_variant = 'mono',
         },
 
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = {'lazydev', 'lsp', 'path', 'snippets', 'buffer'},
+            default = {
+                'parrot',
+                'lazydev',
+                'lsp',
+                'path',
+                'snippets',
+                'buffer',
+            },
             providers = {
                 lazydev = {
                     name = 'LazyDev',
                     module = 'lazydev.integrations.blink',
                     -- make lazydev completions top priority (see `:h blink.cmp`)
-                    score_offset = 100
-                }
-            }
-        }
+                    score_offset = 100,
+                },
+                parrot = {
+                    module = 'parrot.completion.blink',
+                    name = 'parrot',
+                    score_offset = 20,
+                    opts = {
+                        show_hidden_files = false,
+                        max_items = 50,
+                    },
+                },
+            },
+        },
     },
-    opts_extend = {'sources.default'}
+    opts_extend = { 'sources.default' },
 }

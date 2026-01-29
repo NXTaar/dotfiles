@@ -13,7 +13,8 @@ function PersistentStorage:replace(replacement)
 end
 
 function PersistentStorage:persist()
-    local content = vim.tbl_isempty(self.state) and '{}' or vim.json.encode(self.state)
+    local content = vim.tbl_isempty(self.state) and '{}'
+        or vim.json.encode(self.state)
 
     self.path:write(content, 'w')
 end

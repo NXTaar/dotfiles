@@ -27,6 +27,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         keymap_by_action({
             [ACTIONS.LSP_AVAILABLE_ACTIONS_SHOW] = vim.lsp.buf.code_action,
             [ACTIONS.LSP_GOTO_DEFINITION] = vim.lsp.buf.definition,
+            [ACTIONS.LSP_RESTART_SERVERS] = function()
+                vim.lsp.stop_client(vim.lsp.get_clients())
+                vim.cmd('e')
+            end,
         }, opts)
     end,
 })
