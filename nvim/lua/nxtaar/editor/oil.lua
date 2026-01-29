@@ -1,14 +1,13 @@
-return {
+return with_actions({
     'stevearc/oil.nvim',
-    event = "VeryLazy",
+    event = 'VeryLazy',
     opts = {
-        columns = {'icon'},
+        columns = { 'icon' },
         view_options = {
-            show_hidden = true
-        }
+            show_hidden = true,
+        },
     },
-keys = lazy_keys {
-    [ACTIONS.OPEN_FILE_TREE] = "Oil"
-}
-
-}
+    keys = {
+        [ACTIONS.OPEN_FILE_TREE] = 'Oil',
+    },
+})
