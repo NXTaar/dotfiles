@@ -1,5 +1,6 @@
 local devicons = require('nvim-web-devicons')
-local Pill = require('nxtaar.editor.statusline.components.ui.pill')
+local Badge = require('nxtaar.editor.statusline.components.ui.badge')
+local component = require('nxtaar.editor.statusline.utils.component').component
 local Color = require('nxtaar.utils.color')
 
 local base_color = Color.from_hl_group('ModeMsg', 'fg')
@@ -21,7 +22,7 @@ for _, file in ipairs(extend_name_files) do
     extend_name_dict[file] = true
 end
 
-return {
+return component({
     condition = function()
         return vim.bo.buftype == '' and vim.api.nvim_buf_get_name(0) ~= ''
     end,
@@ -30,37 +31,42 @@ return {
         local full_path = vim.api.nvim_buf_get_name(0)
         local filename = vim.fn.fnamemodify(full_path, ':t')
         local extension = vim.fn.fnamemodify(filename, ':e')
+        local display_name = nil
 
-        self.filename_icon, self.filename_color =
+        local icon, icon_color =
             devicons.get_icon_color(filename, extension, { default = true })
 
         if extend_name_dict[filename] ~= nil then
-            self.filename = vim.fn.fnamemodify(full_path, ':h:t')
+            display_name = vim.fn.fnamemodify(full_path, ':h:t')
                 .. '/'
                 .. filename
         else
-            self.filename = filename
+            display_name = filename
         end
-    end,
 
-    Pill({
-        single_pill = true,
-        icon = function(self)
-            return self.filename_icon or ''
-        end,
-        icon_color = function(self)
-            return self.filename_color or self.filename_hl.fg
-        end,
-        pill_color = content_bg,
-        content = function(self)
-            return self.filename
-        end,
-        content_hl = {
-            fg = content_fg,
-            bg = content_bg,
-            bold = false,
-        },
-    }),
+        return {
+            Badge({
+                content = icon,
+                hl = {
+                    bg = content_bg,
+                    fg = icon_color,
+                },
+                round = {
+                    right = false,
+                },
+            }, self),
+            Badge({
+                content = ' ' .. display_name,
+                hl = {
+                    bg = content_bg,
+                    fg = content_fg,
+                },
+                round = {
+                    left = false,
+                },
+            }, self),
+        }
+    end,
 
     update = {
         'BufEnter',
@@ -71,4 +77,4 @@ return {
             vim.cmd('redrawstatus')
         end),
     },
-}
+})

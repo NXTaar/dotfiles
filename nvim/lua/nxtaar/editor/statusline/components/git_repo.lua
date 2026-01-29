@@ -1,4 +1,5 @@
-local Pill = require('nxtaar.editor.statusline.components.ui.pill')
+local Badge = require('nxtaar.editor.statusline.components.ui.badge')
+local component = require('nxtaar.editor.statusline.utils.component').component
 local Git = require('nxtaar.utils.git')
 local Color = require('nxtaar.utils.color')
 
@@ -10,33 +11,36 @@ local icon_color = '#000000'
 local content_fg = base_color_rgb
 local content_bg = base_color:shade(0.75):to_rgb()
 
-return {
-    -- Check if we're in a git repo without using heirline.conditions
+return component({
     condition = function()
         return Git.get_repo_name(vim.api.nvim_buf_get_name(0))
     end,
 
-    -- Initialize component
     init = function(self)
-        self.git_repo_name = Git.get_repo_name(vim.api.nvim_buf_get_name(0))
+        local repo = Git.get_repo_name(vim.api.nvim_buf_get_name(0))
+
+        return {
+            Badge({
+                content = '',
+                hl = { bg = icon_bg, fg = icon_color },
+                overlay = {
+                    right = content_bg,
+                },
+            }, self),
+            Badge({
+                content = ' ' .. repo,
+                hl = {
+                    fg = content_fg,
+                    bg = content_bg,
+                    bold = true,
+                },
+                round = {
+                    left = false,
+                },
+            }, self),
+        }
     end,
 
-    -- Use Pill component for styling
-    Pill({
-        icon = '',
-        icon_color = icon_color,
-        pill_color = icon_bg,
-        content = function(self)
-            return self.git_repo_name
-        end,
-        content_hl = {
-            fg = content_fg,
-            bg = content_bg,
-            bold = true,
-        },
-    }),
-
-    -- Update on relevant events
     update = {
         'BufEnter',
         'BufWritePost',
@@ -46,4 +50,4 @@ return {
             vim.cmd('redrawstatus')
         end),
     },
-}
+})
