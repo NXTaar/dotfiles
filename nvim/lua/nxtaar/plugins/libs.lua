@@ -1,7 +1,10 @@
-return {{
+local libs = {
+    'b0o/schemastore.nvim',
     "nvim-lua/plenary.nvim",
-    lazy = true
-}, {
     'nvim-tree/nvim-web-devicons',
-    lazy = true
-}}
+    'rafamadriz/friendly-snippets'
+}
+
+return vim.tbl_map(function (item)
+    return {item, lazy = true}
+end, libs)

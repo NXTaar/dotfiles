@@ -3,8 +3,10 @@ local assignment = require('nxtaar.system.keymapping.assignment')
 
 for _, action_config in pairs(actions) do
     if action_config.cmd ~= nil then
-        vim.print(action_config)
         assignment(action_config, action_config.cmd):set_keymap()
+    end
+    if action_config.to ~= nil then
+        assignment(action_config):set_keymap(action_config.to)
     end
 end
 
