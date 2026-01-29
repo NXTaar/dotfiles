@@ -95,4 +95,8 @@ return {
         key = '<C-l>',
         to = '<C-w>l',
     },
+    WORKSPACE_DISCOVER_PROJECTS = {
+        desc = 'Show the list of the added projects to the workspace',
+        l_key = 'pr',
+    },
 }

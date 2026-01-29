@@ -33,6 +33,9 @@ return {
                 workspace = {
                     checkThirdParty = false,
                 },
+                diagnostics = {
+                    globals = { 'Snacks' },
+                },
                 codeLens = {
                     enable = true,
                 },
