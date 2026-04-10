@@ -3,6 +3,7 @@ local easing = require('animation.easing')
 local emitter = require('nxtaar.utils.event_emiiter')
 local Badge = require('nxtaar.editor.statusline.components.ui.badge')
 local component = require('nxtaar.editor.statusline.utils.component').component
+local redraw = require('nxtaar.editor.statusline.utils.redraw')
 local Color = require('nxtaar.utils.color')
 
 local animation_event = 'RecordingAnimationUpdate'
@@ -51,7 +52,7 @@ return {
             self.blink = not self.blink
 
             return Badge({
-                content = ' recording @' .. register .. indicator .. ' ',
+                content = ' recording @' .. register .. ' ' .. indicator,
                 hl = record_hl,
                 round = {
                     left = false,
@@ -59,10 +60,5 @@ return {
             }, self)
         end,
     }),
-    update = emitter:user_event(
-        macro_rec_redraw,
-        vim.schedule_wrap(function()
-            vim.cmd('redrawstatus')
-        end)
-    ),
+    update = emitter:user_event(macro_rec_redraw, redraw),
 }

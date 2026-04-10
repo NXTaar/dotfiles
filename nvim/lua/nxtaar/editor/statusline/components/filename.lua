@@ -1,6 +1,7 @@
 local devicons = require('nvim-web-devicons')
 local Badge = require('nxtaar.editor.statusline.components.ui.badge')
 local component = require('nxtaar.editor.statusline.utils.component').component
+local redraw = require('nxtaar.editor.statusline.utils.redraw')
 local Color = require('nxtaar.utils.color')
 
 local base_color = Color.from_hl_group('ModeMsg', 'fg')
@@ -73,8 +74,6 @@ return component({
         'BufWritePost',
         'BufFilePost',
         'BufNewFile',
-        callback = vim.schedule_wrap(function()
-            vim.cmd('redrawstatus')
-        end),
+        callback = redraw,
     },
 })

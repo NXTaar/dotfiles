@@ -1,6 +1,7 @@
 local State = require('nxtaar.editor.statusline.components.state')
 
 local Mode = require('nxtaar.editor.statusline.components.mode')
+local LSP = require('nxtaar.editor.statusline.components.lsp')
 local GitRepo = require('nxtaar.editor.statusline.components.git_repo')
 local GitBranch = require('nxtaar.editor.statusline.components.git_branch')
 local Filename = require('nxtaar.editor.statusline.components.filename')
@@ -23,7 +24,9 @@ local CenterSection = {
     Filename,
 }
 
-local RightSection = {}
+local RightSection = {
+    LSP,
+}
 
 local function render_section(sl)
     sl:eval()

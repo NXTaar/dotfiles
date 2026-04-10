@@ -1,5 +1,6 @@
 local Badge = require('nxtaar.editor.statusline.components.ui.badge')
 local component = require('nxtaar.editor.statusline.utils.component').component
+local redraw = require('nxtaar.editor.statusline.utils.redraw')
 local Git = require('nxtaar.utils.git')
 local Color = require('nxtaar.utils.color')
 
@@ -46,8 +47,6 @@ return component({
         'BufWritePost',
         'BufFilePost',
         'BufNewFile',
-        callback = vim.schedule_wrap(function()
-            vim.cmd('redrawstatus')
-        end),
+        callback = redraw,
     },
 })
