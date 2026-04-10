@@ -33,9 +33,12 @@ local function fix_all(opts)
     opts = opts or {}
 
     local bufnr = validate_bufnr(0)
-    local client = opts.client or vim.lsp.get_clients({ bufnr = bufnr, name = 'eslint' })[1]
+    local client = opts.client
+        or vim.lsp.get_clients({ bufnr = bufnr, name = 'eslint' })[1]
 
-    if not client then return end
+    if not client then
+        return
+    end
 
     local request
 
@@ -97,9 +100,13 @@ return {
     root_dir = function(bufnr, on_dir)
         local fname = vim.api.nvim_buf_get_name(bufnr)
         root_file = insert_package_json(root_file, 'eslintConfig', fname)
-        local root_dir = vim.fs.dirname(vim.fs.find(root_file, { path = fname, upward = true })[1])
+        local root_dir = vim.fs.dirname(
+            vim.fs.find(root_file, { path = fname, upward = true })[1]
+        )
 
-        if root_dir then on_dir(root_dir) end
+        if root_dir then
+            on_dir(root_dir)
+        end
     end,
     -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
     settings = {
@@ -107,7 +114,7 @@ return {
         packageManager = nil,
         useESLintClass = false,
         experimental = {
-            useFlatConfig = false,
+            useFlatConfig = true,
         },
         codeActionOnSave = {
             enable = false,
@@ -125,7 +132,7 @@ return {
         -- This path is relative to the workspace folder (root dir) of the server instance.
         nodePath = '',
         -- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
-        workingDirectory = { mode = 'location' },
+        workingDirectory = { mode = 'auto' },
         codeAction = {
             disableRuleComment = {
                 enable = true,
@@ -161,7 +168,8 @@ return {
 
             for _, file in ipairs(flat_config_files) do
                 if vim.fn.filereadable(root_dir .. '/' .. file) == 1 then
-                    config.settings.experimental = config.settings.experimental or {}
+                    config.settings.experimental = config.settings.experimental
+                        or {}
                     config.settings.experimental.useFlatConfig = true
                     break
                 end
@@ -178,11 +186,15 @@ return {
     end,
     handlers = {
         ['eslint/openDoc'] = function(_, result)
-            if result then vim.ui.open(result.url) end
+            if result then
+                vim.ui.open(result.url)
+            end
             return {}
         end,
         ['eslint/confirmESLintExecution'] = function(_, result)
-            if not result then return end
+            if not result then
+                return
+            end
             return 4 -- approved
         end,
         ['eslint/probeFailed'] = function()
@@ -190,7 +202,10 @@ return {
             return {}
         end,
         ['eslint/noLibrary'] = function()
-            vim.notify('[lspconfig] Unable to find ESLint library.', vim.log.levels.WARN)
+            vim.notify(
+                '[lspconfig] Unable to find ESLint library.',
+                vim.log.levels.WARN
+            )
             return {}
         end,
     },
