@@ -75,7 +75,6 @@ opt.sessionoptions = {
     'help',
     'globals',
     'skiprtp',
-    'folds',
 } -- Session options
 
 -- Editing Enhancements
