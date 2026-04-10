@@ -154,4 +154,8 @@ return {
         desc = 'Open a preview for all highlight groups',
         l_key = 'hl',
     },
+    UNDO_SHOW_TREE = {
+        desc = 'Open a tree view for undo operations',
+        l_key = 'u',
+    },
 }
