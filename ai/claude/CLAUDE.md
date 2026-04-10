@@ -28,6 +28,11 @@ Example workflow:
 - Use `builtin cd` instead of `cd` when changing directories
 - Reason: `cd` is aliased to zoxide (`z`), which may not behave as expected in non-interactive contexts
 
+## Git Commits
+
+### No Co-Authored-By
+- Do NOT add "Co-Authored-By: Claude..." lines to commit messages
+
 ## Web Fetching
 
 ### GitHub Content
