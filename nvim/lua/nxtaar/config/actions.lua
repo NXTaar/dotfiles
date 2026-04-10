@@ -15,6 +15,9 @@ return {
         desc = 'Open files tree',
         l_key = '-',
     },
+    BUFFERS_DELETE_BUFFER = {
+        desc = 'Delete current buffer',
+    },
     BUFFERS_LIST_OPEN = {
         desc = 'List with current opened buffers',
         l_key = 'bl',
