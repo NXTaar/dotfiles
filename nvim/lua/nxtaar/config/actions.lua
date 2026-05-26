@@ -179,4 +179,12 @@ return {
         desc = 'AI command prompt',
         l_key = 'ac',
     },
+    TS_IMPORT_ALL = {
+        desc = 'Typescript: import all missing entities',
+        l_key = 'tsi',
+    },
+    TS_REMOVE_UNUSED = {
+        desc = 'Typescript: remove all unused imports',
+        l_key = 'tsu',
+    },
 }

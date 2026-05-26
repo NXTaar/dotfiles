@@ -33,5 +33,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
             end,
             [ACTIONS.LSP_POPULATE_DIAGNOSTICS_QL] = vim.diagnostic.setloclist,
         }, opts)
+
+        if event.data and vim.lsp.get_client_by_id(event.data.client_id).name == 'vtsls' then
+            keymap_by_action({
+                [ACTIONS.TS_IMPORT_ALL] = function()
+                    vim.lsp.buf.code_action({
+                        apply = true,
+                        context = { only = { 'source.addMissingImports.ts' } },
+                    })
+                end,
+                [ACTIONS.TS_REMOVE_UNUSED] = function()
+                    vim.lsp.buf.code_action({
+                        apply = true,
+                        context = { only = { 'source.removeUnused.ts' } },
+                    })
+                end,
+            }, opts)
+        end
     end,
 })
