@@ -15,7 +15,7 @@ return {
         desc = 'Open files tree',
         l_key = '-',
     },
-    OPEN_BUFFER_LIST = {
+    BUFFERS_LIST_OPEN = {
         desc = 'List with current opened buffers',
         l_key = 'bl',
     },
@@ -63,15 +63,15 @@ return {
         l_key = 'sc',
         cmd = ':source % | echo \'File \'.expand(\'%\').\' sourced successfully\'',
     },
-    OPEN_GIT = {
+    GIT_CLIENT_OPEN = {
         desc = 'Open Git client',
         l_key = 'gg',
     },
-    OPEN_GIT_LOG = {
+    GIT_LOG_OPEN = {
         desc = 'Open logged Git commits',
         l_key = 'gl',
     },
-    OPEN_GIT_BRANCHES = {
+    GIT_BRANCHES_OPEN = {
         desc = 'Open list with all Git branches of the repository',
         l_key = 'gb',
     },
@@ -94,6 +94,14 @@ return {
         desc = 'Navigate to the right split from current',
         key = '<C-l>',
         to = '<C-w>l',
+    },
+    SEARCH_GREP = {
+        desc = 'Search substring in files',
+        l_key = 's',
+    },
+    SEARCH_GREP_WORD = {
+        desc = 'Search current word/selection in files',
+        key = 'gs',
     },
     LSP_AVAILABLE_ACTIONS_SHOW = {
         desc = 'Execute suggested LSP action',
@@ -122,5 +130,13 @@ return {
     TASK_RUNNER_RUN_TASK = {
         desc = 'Run a task with the task runner',
         l_key = 'tr',
+    },
+    BUFFERS_CLOSE_OTHER = {
+        desc = 'Close all buffers except the current one',
+        l_key = 'bcl',
+    },
+    LSP_RESTART_SERVERS = {
+        desc = 'Restart LSP-servers, f.e. when the file structure or dependencies change',
+        l_key = 'glr',
     },
 }
