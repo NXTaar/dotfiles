@@ -1,15 +1,16 @@
 return {
     'frankroeder/parrot.nvim',
-    dependencies = { 'ibhagwan/fzf-lua' },
+
     opts = {
         providers = {
-            custom = {
-                style = 'openai',
+            openrouter = {
+                name = 'openrouter',
                 api_key = os.getenv('OPENROUTER_API_KEY'),
                 endpoint = 'https://openrouter.ai/api/v1/chat/completions',
                 models = {
                     'anthropic/claude-sonnet-4',
                     'google/gemini-2.5-pro-preview',
+                    'openai/gpt-5',
                 },
                 -- parameters to summarize chat
                 topic = {
