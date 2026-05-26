@@ -31,7 +31,7 @@ function Repo:add()
 
     storage:update({ [self.name] = self.path })
 
-    vim.notify('Repo ' .. self.name .. 'has been added to the workspace', vim.log.levels.INFO)
+    vim.notify('Repo ' .. self.name .. ' has been added to the workspace', vim.log.levels.INFO)
 end
 
 function Repo:remove()
