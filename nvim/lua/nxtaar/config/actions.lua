@@ -95,9 +95,17 @@ return {
         key = '<C-l>',
         to = '<C-w>l',
     },
+    LSP_AVAILABLE_ACTIONS_SHOW = {
+        desc = 'Execute suggested LSP action',
+        key = 'gx',
+    },
     LSP_REFERENCES_SHOW = {
         desc = 'Show references (usages) of the item',
         key = 'gr',
+    },
+    LSP_GOTO_DEFINITION = {
+        desc = 'Go to the definition of the symbol',
+        key = 'gd',
     },
     DIAGNOSTICS_SHOW = {
         desc = 'Show file\'s errors and warnings',
