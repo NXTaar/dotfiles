@@ -1,9 +1,7 @@
-local M = {
+return with_actions({
     'mbbill/undotree',
-}
-
-function M.config()
-    register_keymap_action('undo.toggle-tree', 'UndotreeToggle', 'cmd')
-end
-
-return M
+    opts = {},
+    keys = {
+        [ACTIONS.UNDO_SHOW_TREE] = vim.cmd.UndotreeToggle,
+    },
+})
