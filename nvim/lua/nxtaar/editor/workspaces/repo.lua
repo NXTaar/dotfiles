@@ -1,4 +1,6 @@
 local create_storage = require('nxtaar.utils.persistent_storage')
+local Git = require('nxtaar.utils.git')
+
 local storage = create_storage('workspaces')
 
 local Repo = {}
@@ -10,20 +12,20 @@ end
 
 -- Constructor
 function Repo:new(path)
-    local instance = setmetatable({}, self)
-
     if type(path) ~= 'string' or #path == 0 then
         return nil
     end
 
-    local root = vim.fs.root(path, '.git')
+    local repo_info = Git.get_repo(path)
 
-    if root == nil then
+    if not repo_info then
         return nil
     end
 
-    instance.path = root
-    instance.name = vim.fn.fnamemodify(root, ':t')
+    local instance = setmetatable({}, self)
+
+    instance.path = repo_info.root
+    instance.name = repo_info.repo
 
     return instance
 end

@@ -43,6 +43,20 @@ function Color:new(H, S, L)
     -- return setmetatable({ H = H, S = S, L = L }, Color_mt)
 end
 
+--- Creates a Color object from a highlight group's color field
+--- @param name string The name of the highlight group
+--- @param field string The color field to extract (e.g., "fg", "bg")
+--- @return Color Color A new Color object with the extracted color value
+function Color.from_hl_group(name, field)
+    local hl = vim.api.nvim_get_hl(0, {
+        name = name,
+        link = false,
+        create = false,
+    })
+
+    return Color:new(string.format('#%06x', hl[field]))
+end
+
 -----------------------------------------------------------------------------
 --- Converts an HSL triplet to RGB
 --- (see http://homepages.cwi.nl/~steven/css/hsl.html).
@@ -50,7 +64,7 @@ end
 --- @param h number Hue (0-360)
 --- @param s number Saturation (0.0-1.0)
 --- @param L number Lightness (0.0-1.0)
---- @return number, number, number -- R, G, and B components of RGB (0.0-1.0)
+--- @return number R, number B, number G R, G, and B components of RGB (0.0-1.0)
 -----------------------------------------------------------------------------
 function Color.hsl_to_rgb(h, s, L)
     h = h / 360

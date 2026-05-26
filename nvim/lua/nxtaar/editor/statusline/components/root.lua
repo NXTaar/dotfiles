@@ -3,6 +3,7 @@ local consts = {
     mode = require('nxtaar.editor.statusline.constants.mode')
 }
 local mode = require('nxtaar.editor.statusline.components.mode')
+local git_repo = require('nxtaar.editor.statusline.components.git_repo')
 local git_branch = require('nxtaar.editor.statusline.components.git_branch')
 local filename = require('nxtaar.editor.statusline.components.filename')
 local theme_utils = require('nxtaar.editor.statusline.utils.theme')
@@ -26,8 +27,13 @@ return {
         end
     },
     mode,
+    git_repo,
     git_branch,
-    { provider = "%=" }, -- This creates flexible space that pushes content to center/right
+    {
+        provider = "%="
+    }, -- This creates flexible space that pushes content to center/right
     filename,
-    { provider = "%=" }, -- This balances the space, centering the filename
+    {
+        provider = "%="
+    } -- This balances the space, centering the filename
 }
