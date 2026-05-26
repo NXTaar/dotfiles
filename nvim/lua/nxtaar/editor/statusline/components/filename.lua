@@ -1,5 +1,3 @@
-local conditions = require('heirline.conditions')
-local utils = require('heirline.utils')
 local devicons = require('nvim-web-devicons')
 local Pill = require('nxtaar.editor.statusline.components.ui.pill')
 local Color = require('nxtaar.utils.color')
@@ -25,17 +23,24 @@ end
 
 return {
     condition = function()
-        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
-        return vim.bo.buftype == '' and filename ~= ''
+        return vim.bo.buftype == '' and vim.api.nvim_buf_get_name(0) ~= ''
     end,
 
     init = function(self)
-        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
+        local full_path = vim.api.nvim_buf_get_name(0)
+        local filename = vim.fn.fnamemodify(full_path, ':t')
         local extension = vim.fn.fnamemodify(filename, ':e')
 
         self.filename_icon, self.filename_color =
             devicons.get_icon_color(filename, extension, { default = true })
-        self.filename = filename
+
+        if extend_name_dict[filename] ~= nil then
+            self.filename = vim.fn.fnamemodify(full_path, ':h:t')
+                .. '/'
+                .. filename
+        else
+            self.filename = filename
+        end
     end,
 
     Pill({

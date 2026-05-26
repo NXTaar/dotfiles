@@ -139,4 +139,8 @@ return {
         desc = 'Restart LSP-servers, f.e. when the file structure or dependencies change',
         l_key = 'glr',
     },
+    HIGHLIGHT_GROUPS_LIST_OPEN = {
+        desc = 'Open a preview for all highlight groups',
+        l_key = 'hl'
+    }
 }
