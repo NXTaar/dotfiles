@@ -19,4 +19,15 @@ function M.insert_package_json(config_files, field, fname)
     return config_files
 end
 
+function M.has_node_modules(path)
+    local target = vim.fs.find('node_modules', {
+        path = path,
+        upward = true,
+        limit = 1,
+        type = 'directory',
+    })
+
+    return #target > 0
+end
+
 return M

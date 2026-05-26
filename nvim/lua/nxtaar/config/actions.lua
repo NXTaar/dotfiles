@@ -115,4 +115,12 @@ return {
         desc = 'Show the list of the added projects to the workspace',
         l_key = 'pr',
     },
+    TASK_RUNNER_OVERVIEW_OPEN = {
+        desc = 'Open overview window with current tasks',
+        l_key = 'tt',
+    },
+    TASK_RUNNER_RUN_TASK = {
+        desc = 'Run a task with the task runner',
+        l_key = 'tr',
+    },
 }
