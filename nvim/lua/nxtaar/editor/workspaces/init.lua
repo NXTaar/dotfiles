@@ -2,7 +2,7 @@ local Repo = require('nxtaar.editor.workspaces.repo')
 
 local opts = {
     picker = {
-        type = 'fzf-lua',
+        type = 'snacks',
     },
     last_session_on_startup = false,
 }
