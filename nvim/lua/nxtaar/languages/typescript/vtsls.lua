@@ -1,4 +1,18 @@
 return {
+    keymaps = {
+        [ACTIONS.TS_IMPORT_ALL] = function()
+            vim.lsp.buf.code_action({
+                apply = true,
+                context = { only = { 'source.addMissingImports.ts' } },
+            })
+        end,
+        [ACTIONS.TS_REMOVE_UNUSED] = function()
+            vim.lsp.buf.code_action({
+                apply = true,
+                context = { only = { 'source.removeUnused.ts' } },
+            })
+        end,
+    },
     cmd = { 'vtsls', '--stdio' },
     filetypes = {
         'javascript',
