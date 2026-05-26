@@ -1,6 +1,7 @@
 local Badge = require('nxtaar.editor.statusline.components.ui.badge')
 local MacroRec = require('nxtaar.editor.statusline.components.macro_rec')
 local component = require('nxtaar.editor.statusline.utils.component').component
+local redraw = require('nxtaar.editor.statusline.utils.redraw')
 local emitter = require('nxtaar.utils.event_emiiter')
 
 local mode_and_recording_event = 'VimModeAndMacroRec'
@@ -50,7 +51,11 @@ return {
                 }, self),
             }
         end,
-        update = mode_changed_autocmd,
+        update = vim.tbl_extend(
+            'force',
+            mode_changed_autocmd,
+            { callback = redraw }
+        ),
     }),
     {
         fallthrough = true,
