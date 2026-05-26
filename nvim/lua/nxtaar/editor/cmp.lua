@@ -30,7 +30,7 @@ return {
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
             default = {
-                'parrot',
+                'codecompanion',
                 'lazydev',
                 'lsp',
                 'path',
@@ -44,14 +44,10 @@ return {
                     -- make lazydev completions top priority (see `:h blink.cmp`)
                     score_offset = 100,
                 },
-                parrot = {
-                    module = 'parrot.completion.blink',
-                    name = 'parrot',
-                    score_offset = 20,
-                    opts = {
-                        show_hidden_files = false,
-                        max_items = 50,
-                    },
+                codecompanion = {
+                    enabled = true,
+                    module = 'codecompanion.providers.completion.blink',
+                    name = 'CodeCompanion',
                 },
             },
         },

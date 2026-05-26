@@ -162,4 +162,21 @@ return {
         desc = 'Open a tree view for undo operations',
         l_key = 'u',
     },
+    AI_CHAT_TOGGLE = {
+        desc = 'Toggle AI chat',
+        l_key = 'aa',
+    },
+    AI_CHAT_ACTIONS = {
+        desc = 'Open AI action palette',
+        l_key = 'ap',
+    },
+    AI_INLINE = {
+        desc = 'AI inline assist',
+        l_key = 'ai',
+        mode = 'v',
+    },
+    AI_CMD = {
+        desc = 'AI command prompt',
+        l_key = 'ac',
+    },
 }
