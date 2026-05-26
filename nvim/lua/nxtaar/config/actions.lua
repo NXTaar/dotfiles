@@ -95,6 +95,14 @@ return {
         key = '<C-l>',
         to = '<C-w>l',
     },
+    LSP_REFERENCES_SHOW = {
+        desc = 'Show references (usages) of the item',
+        key = 'gr',
+    },
+    DIAGNOSTICS_SHOW = {
+        desc = 'Show file\'s errors and warnings',
+        key = 'gp',
+    },
     WORKSPACE_DISCOVER_PROJECTS = {
         desc = 'Show the list of the added projects to the workspace',
         l_key = 'pr',
