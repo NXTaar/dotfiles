@@ -115,6 +115,14 @@ return {
         desc = 'Go to the definition of the symbol',
         key = 'gd',
     },
+    LSP_SHOW_INFO = {
+        desc = 'Show info about the item',
+        key = 'gi',
+    },
+    LSP_RESTART_SERVERS = {
+        desc = 'Restart LSP-servers, f.e. when the file structure or dependencies change',
+        l_key = 'glr',
+    },
     DIAGNOSTICS_SHOW = {
         desc = 'Show file\'s errors and warnings',
         key = 'gp',
@@ -135,12 +143,8 @@ return {
         desc = 'Close all buffers except the current one',
         l_key = 'bcl',
     },
-    LSP_RESTART_SERVERS = {
-        desc = 'Restart LSP-servers, f.e. when the file structure or dependencies change',
-        l_key = 'glr',
-    },
     HIGHLIGHT_GROUPS_LIST_OPEN = {
         desc = 'Open a preview for all highlight groups',
-        l_key = 'hl'
-    }
+        l_key = 'hl',
+    },
 }

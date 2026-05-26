@@ -15,6 +15,7 @@ opt.backup = false -- Disable file backups
 opt.undofile = true -- Enable persistent undo
 opt.undolevels = 10000 -- Maximum number of undo levels
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
+opt.winborder = 'rounded'
 
 -- Formatting and Indentation
 opt.softtabstop = 4
@@ -28,18 +29,8 @@ opt.formatexpr = 'v:lua.require\'conform\'.formatexpr()' -- Format expression
 opt.formatoptions = 'jcroqlnt' -- Formatting options
 
 -- Folding
-opt.foldlevel = 99 -- Start with all folds open
-opt.foldmethod = 'expr' -- Use expression folding
-opt.foldexpr = 'v:lua.require\'nxtaar.utils.ui\'.foldexpr()' -- Fold expression
-opt.foldtext = '' -- Custom fold text
-opt.fillchars = {
-    foldopen = '',
-    foldclose = '',
-    fold = ' ',
-    foldsep = ' ',
-    diff = '╱',
-    eob = ' ',
-}
+opt.foldlevel = 99
+opt.foldlevelstart = 99
 
 -- Search and Navigation
 opt.ignorecase = true -- Ignore case in searches
@@ -76,7 +67,16 @@ opt.splitright = true -- Put new windows to the right of the current
 opt.splitkeep = 'screen' -- Keep the current screen view when splitting
 
 -- Session and Buffer Management
-opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' } -- Session options
+opt.sessionoptions = {
+    'buffers',
+    'curdir',
+    'tabpages',
+    'winsize',
+    'help',
+    'globals',
+    'skiprtp',
+    'folds',
+} -- Session options
 
 -- Editing Enhancements
 opt.completeopt = 'menu,menuone,noselect' -- Completion options
