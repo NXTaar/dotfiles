@@ -123,6 +123,10 @@ return {
         desc = 'Restart LSP-servers, f.e. when the file structure or dependencies change',
         l_key = 'glr',
     },
+    LSP_POPULATE_DIAGNOSTICS_QL = {
+        desc = 'Open diagnostic [Q]uickfix list',
+        l_key = 'q',
+    },
     DIAGNOSTICS_SHOW = {
         desc = 'Show file\'s errors and warnings',
         key = 'gp',
