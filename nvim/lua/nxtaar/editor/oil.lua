@@ -7,9 +7,8 @@ return {
             show_hidden = true
         }
     },
-    keys = {{
-        "<leader>-",
-        "<cmd>Oil<cr>",
-        desc = "Open file tree"
-    }}
+keys = lazy_keys {
+    [ACTIONS.OPEN_FILE_TREE] = "Oil"
+}
+
 }
