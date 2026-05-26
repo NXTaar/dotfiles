@@ -138,6 +138,10 @@ return {
         desc = 'Show the list of the added projects to the workspace',
         l_key = 'pr',
     },
+    OPEN_WORKSPACE_FILE_SEARCH = {
+        desc = 'Search files across all workspace projects',
+        l_key = 'pf',
+    },
     TASK_RUNNER_OVERVIEW_OPEN = {
         desc = 'Open overview window with current tasks',
         l_key = 'tt',
