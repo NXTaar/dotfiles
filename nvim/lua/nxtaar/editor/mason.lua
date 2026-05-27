@@ -2,13 +2,17 @@ local ensure_installed = require('nxtaar.system.languages').ensure_installed
 
 return {
     {
-        'williamboman/mason.nvim',
-        opts = {},
-    },
-    {
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason-lspconfig.nvim',
+        dependencies = {
+            {
+                'mason-org/mason.nvim',
+                opts = {},
+            },
+            'neovim/nvim-lspconfig',
+        },
         opts = {
             ensure_installed = ensure_installed,
+            automatic_enable = false,
         },
     },
 }

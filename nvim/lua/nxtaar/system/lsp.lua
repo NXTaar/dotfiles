@@ -30,13 +30,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
             [ACTIONS.LSP_GOTO_DEFINITION] = vim.lsp.buf.definition,
             [ACTIONS.LSP_SHOW_INFO] = vim.diagnostic.open_float,
             [ACTIONS.LSP_RESTART_SERVERS] = function()
-                vim.lsp.stop_client(vim.lsp.get_clients())
+                for _, client in ipairs(vim.lsp.get_clients()) do
+                    client:stop()
+                end
                 vim.cmd('e')
             end,
             [ACTIONS.LSP_POPULATE_DIAGNOSTICS_QL] = vim.diagnostic.setloclist,
         }, opts)
 
-        local client = vim.lsp.get_client_by_id(event.data and event.data.client_id)
+        local client =
+            vim.lsp.get_client_by_id(event.data and event.data.client_id)
         if client and server_keymaps[client.name] then
             keymap_by_action(server_keymaps[client.name], opts)
         end
