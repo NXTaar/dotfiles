@@ -74,8 +74,8 @@ return {
         desc = 'Open logged Git commits',
         l_key = 'gl',
     },
-    GIT_BRANCHES_OPEN = {
-        desc = 'Open list with all Git branches of the repository',
+    GIT_BLAME_LINE_SHOW = {
+        desc = 'Show Git blame for current line',
         l_key = 'gb',
     },
     NAVIGATE_LEFT_SPLIT = {
