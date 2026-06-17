@@ -9,6 +9,7 @@ local cmd = vim.lsp.rpc.connect('127.0.0.1', tonumber(port))
 
 ---@type vim.lsp.Config
 return {
+    skip_install = { 'gdscript' },
     gdscript = {
         cmd = cmd,
         filetypes = { 'gd', 'gdscript', 'gdscript3' },
